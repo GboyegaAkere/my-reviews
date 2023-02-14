@@ -4,45 +4,44 @@ import {FaQuoteRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
  
 function Review(){
     const [index, setIndex] = React.useState(0)
-    const {name, job, image, text} = people[index]
+    const {image,job, name,text} = people[index]
 
-    const checkNumber =(number)=>{
-        if(number > people.length -1){
+    const checkNumber =(number) =>{
+        if(number > people.length-1){
             return 0
         }
-        if(number <  0){
+        if(number < 0){
             return people.length -1
         }
-        return number 
+        return number
     }
 
-    
-    const nextPerson = ()=>{
-        setIndex((prevState)=>{
+    const nextButton =()=>{
+        setIndex ((prevState)=>{
             let newIndex = prevState +1
-            return checkNumber (newIndex)
-        });
-    };
+            return checkNumber(newIndex)
+        })
+    }
 
-    const prevPerson = ()=>{
-        setIndex((prevState)=>{
+    const prevButton = () =>{
+        setIndex ((prevState)=>{
             let newIndex = prevState -1
-            return checkNumber ( newIndex)
-        });
-    };
+            return checkNumber(newIndex)
+        })
+    }
 
-    const randomPerson =()=>{
-        let randomNumber = Math.floor (Math.random()* people.length)
-        if(randomNumber === index){
-            randomNumber = index + 1
-        }
+
+    function randomPerson(){
+        let randomNumber = Math.floor(Math.random()*people.length)
         setIndex(checkNumber(randomNumber))
     }
+
+
 
     return(
         <acticle className='review'>
             <div className="img-container">
-                <img src={image} alt={name} className ='person-img' />
+                <img src={image} alt={name}  className='person-img'/>
                 <span className="quote-icon">
                     <FaQuoteRight/>
                 </span>
@@ -51,16 +50,22 @@ function Review(){
             <p className="job">{job}</p>
             <p className="info">{text}</p>
             <div className="button-container">
-                <button className="prev-btn" onClick={prevPerson}>
-                    <FaChevronLeft />
+                <button className="prev-btn" onClick={prevButton}>
+                    <FaChevronLeft/>
                 </button>
-                <button className="next-btn" onClick={nextPerson}>
+                <button className="next-btn" onClick={nextButton}>
                     <FaChevronRight/>
                 </button>
             </div>
-            <button className="random-btn" onClick={randomPerson}>suprise </button>
+            <button className="random-btn" onClick={randomPerson}>SUPRISE</button>
         </acticle>
     )
 }
+ 
 
 export default Review
+
+
+    
+
+    
